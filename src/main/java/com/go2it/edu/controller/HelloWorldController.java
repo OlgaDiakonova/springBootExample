@@ -14,9 +14,10 @@ import com.github.openjson.JSONObject;
  * @author Alex Ryzhkov
  */
 @Controller
+@RequestMapping(value = "/api")
 public class HelloWorldController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String getHelloWorldMessage() {
 		//Use template instead of hard-coded HTML
 		return "helloWorld";
@@ -27,17 +28,20 @@ public class HelloWorldController {
 //				+ "</div>";
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public String getHelloWorldMessageForUser(@RequestParam String name) {
-		return "<div style=\"text-align:center;\">" + "<h1>Welcome, " + name + "</h1>"
-				+ "<p> This is my first web-page </p>" + "</div>";
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return "login";
 	}
 
-//	@RequestMapping(value = "/{resource}", method = RequestMethod.GET)
-//	public String getHelloWorldMessageFromResource(@PathVariable String resource) {
-//		return "<div style=\"text-align:center;\">" + "<h1>This request was done to the resource: " + resource
-//				+ "</h1>" + "</div>";
-//	}
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	public String getHelloWorldMessageForUser(@RequestParam String name) {
+		return "helloUser";
+	}
+
+	@RequestMapping(value = "/{resource}/passportDetails", method = RequestMethod.GET)
+	public String getHelloWorldMessageFromResource(@PathVariable String resource) {
+		return "passportDetails";
+	}
 
 	@RequestMapping(value = "/customizedWelcome", method = RequestMethod.POST)
 	public String getHelloWorldWithFromJSON(@RequestBody String message) {
